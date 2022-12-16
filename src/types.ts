@@ -1,60 +1,47 @@
-type PresentationHistory = {
+import { type } from "os";
+
+  export type PresentationHistory = {
     index: number,
     states: [],
-  };
+  }; 
   
-  type SlideAnimation = {
+  export type SlideAnimation = {
     fadeIn: number,
     fadeOut: number,
   };
   
-  type Border = {
+  export type Border = {
     width: number,
     type: string,
     color: string,
   };
   
-  type Filter = {
-    blur: number,
-    colorSelection: string,  
-  };
-  
-  type Image = {
+  export type Image = {
     url: string,
-    filter: Filter,
   };
   
-  type SlideText = {
-    fontFamily: string,
-    fontColor: string,
-    fontSize: number,
-    bold: boolean,
-    italic: boolean,
-    underline: boolean,
-  };
+  // export type SlideElement = {
+  //   id: string,
+  //   width: number,
+  //   heigth: number,
+  //   position: {
+  //     x: number,
+  //     y: number,
+  //   },
+  //   color: string,
+  //   border: Border,
+  //   data: Image
+  // };
   
-  type SlideElement = {
-    id: string,
-    width: number,
-    heigth: number,
-    position: {
-      x: number,
-      y: number,
-    },
-    color: string,
-    border: Border,
-    data: Image ,
-  };
-  
-  type pictureBackground = {
+  export type pictureBackground = {
     url: string;
-}
+  }
 
-  type color = {
+  export type color = {
     codeColor: string;
-}
+  }
 
-type Block = {
+  export type Block = {
   content: blockContent;
   blockId: number;
   position: {
@@ -63,36 +50,70 @@ type Block = {
   };
   width: number;
   height: number;
+  }
+
+  export type SlideText = {
+    type: 'text',
+    data: string,
+    fontFamily: string,
+    fontColor: string,
+    fontSize: number,
+    fontWeight: number,
+    underline: boolean,
+    width: number,
+    height: number
+  };
+
+  export type ImgObject =  {
+    type: 'img';
+    path: string;
+    width: number;
+    height: number;
+ };
+
+ export type FigureType = 'circle' | 'rectangle' | 'triangle'| 'line';
+
+ export type FigureObject = {
+   type: 'figure';
+   figure: FigureType;
+   strokeColor: string;
+   background: null | string;
+   strokeWidth: number;
+   borderRadius: number;
+   width: number;
+   height: number;
 }
-  
-  type Slide = {
+
+  export type SlideNode = SlideText | ImgObject | FigureObject;
+
+  export type ObjectsList = Array<SlideNode>;
+
+  export type Slide = {
     id: number,
-    elementList: SlideElement[],
+    elementList: ObjectsList,
     selectedBlocks: Primitive[], //хранит данные выделенных элементов
     background: color | pictureBackground,
-    blockList: Block[];
-    selectedBlockList: Block[];
+    // blockList: Block[];
+    // selectedBlockList: Block[];
   };
   
-  type Presentation = {
+  export type Presentation = {
     name: string,
     slideList: Slide[],
     currentSlide: number,
     selectedSlides: Slide[], 
   };
   
-  type Primitive = {
+  export type Primitive = {
     type: string,
   };
   
-  type Editor = {
+  export type Editor = {
     mode: string,
     history: PresentationHistory[],
     presentation: Presentation,
   };
 
-  type blockContent = {
+  export type blockContent = {
     data:  Primitive | Image | SlideText;
-}
-
-export{}
+  }

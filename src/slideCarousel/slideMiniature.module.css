@@ -1,0 +1,10 @@
+
+.slide {
+    width: 20%;
+    height: 20%;
+    position: relative;
+    transition: 0.1s;
+    box-shadow: 0 9px 17px 9px rgba(0, 0, 0, 0.5);
+    background: white;
+    /* box-sizing: border-box; */
+}

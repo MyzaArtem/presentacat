@@ -1,6 +1,6 @@
+import { color } from "./types"
 
-const defaultColor: color = {
+export const defaultColor: color = {
     codeColor : '#000000'
 }
 
-export {}
