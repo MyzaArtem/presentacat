@@ -100,8 +100,8 @@ import { type } from "os";
     elementList: ObjectsList,
     selectedBlocks: Primitive[], //хранит данные выделенных элементов
     background: color | pictureBackground,
-    // blockList: Block[];
-    // selectedBlockList: Block[];
+    blockList: Block[];
+    selectedBlockList: Block[];
   };
   
   export type Presentation = {
