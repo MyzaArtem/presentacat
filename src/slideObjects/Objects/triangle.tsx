@@ -1,5 +1,7 @@
 import React from "react";
 import styles from '../../App.module.css';
+import { NodeType } from "../../types";
+import { connect } from 'react-redux';
 
 interface triangleProps{
     x: number;

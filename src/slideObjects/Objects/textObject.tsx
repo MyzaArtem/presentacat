@@ -1,5 +1,7 @@
 import React from "react";
 import styles from '../../App.module.css';
+import { NodeType, Presentation } from "../../types";
+import { connect } from 'react-redux';
 
 interface textProps{
     x: number;
@@ -13,6 +15,10 @@ interface textProps{
     kWidth: number,
     kHeight: number,
     key: number,
+    changeTextData: (data: string) => void,
+    resizeNode: (width: number, height: number) => void,
+    changeSelectedObject: (id: string, type: NodeType) => void,
+    moveItem: (x: number, y: number) => void,
 }
 
 function TextObject(props: textProps){
@@ -34,4 +40,24 @@ function TextObject(props: textProps){
     );
 }
 
-export default TextObject; 
+interface TextOwnProps {
+    node: TextObject;
+    style: React.CSSProperties;
+    kWidth: number;
+    kHeight: number;
+    choosed: boolean;
+}
+
+const mapDispatchToProps = {
+    changeTextData,
+    resizeNode,
+    changeSelectedObject,
+    moveItem
+}
+
+const mapStateToProps = (state: Presentation, ownProps: TextOwnProps) => {
+    return ownProps;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TextObject)
+
