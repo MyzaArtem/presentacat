@@ -1,5 +1,8 @@
 import React from 'react';
 import styles from '../../App.module.css';
+import { NodeType, Presentation } from '../../types';
+import { FigureObject } from '../../types';
+import { connect } from 'react-redux';
 
 interface CircleProps {
     x: number;
@@ -36,4 +39,14 @@ interface CircleOwnProps {
     choosed: boolean;
 }
 
-export default Circle;
+const mapStateToProps = (state: Presentation, ownProps: CircleOwnProps) => {
+    return ownProps;
+}
+
+const mapDispatchToProps = {
+    resizeNode,
+    changeSelectedObject,
+    moveItem
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Circle);

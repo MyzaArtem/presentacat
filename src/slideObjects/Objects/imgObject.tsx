@@ -1,12 +1,18 @@
 import React from "react";
 import styles from '../../App.module.css';
+import { NodeType, Presentation } from "../../types";
+import { ImgObject } from "../../types";
+import { connect } from 'react-redux';
 
 interface imgProps{
     x: number;
     y: number;
     kWidth: number,
     kHeight: number,
-    src: string
+    src: string,
+    resizeNode: (width: number, height: number) => void,
+    changeSelectedObject: (id: string, type: NodeType) => void,
+    moveItem: (x: number, y: number) => void;
 }
 
 function ImgObject(props: imgProps){
@@ -25,4 +31,23 @@ function ImgObject(props: imgProps){
     );
 }
 
-export default ImgObject; 
+interface ImgOwnProps {
+    node: ImgObject;
+    style: React.CSSProperties;
+    kWidth: number;
+    kHeight: number;
+    choosed: boolean;
+}
+
+const mapStateToProps = (state: Presentation, ownProps: ImgOwnProps) => {
+    return ownProps;
+}
+
+const mapDispatchToProps = {
+    resizeNode,
+    changeSelectedObject,
+    moveItem
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImgObject);
+

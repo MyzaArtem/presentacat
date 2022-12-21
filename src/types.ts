@@ -76,7 +76,7 @@ import { type } from "os";
     height: number;
  };
 
- export type FigureType = 'circle' | 'rectangle' | 'triangle'| 'line';
+ export type FigureType = 'circle' | 'rectangle' | 'triangle';
 
  export type FigureObject = {
    type: 'figure';
@@ -92,6 +92,8 @@ import { type } from "os";
 }
 
   export type SlideNode = SlideText | ImgObject | FigureObject;
+
+  export type NodeType = 'text' | 'img' | 'figure';
 
   export type ObjectsList = Array<SlideNode>;
 
