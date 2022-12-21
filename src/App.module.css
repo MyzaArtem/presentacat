@@ -31,3 +31,9 @@ body {
     padding: 40px 0;
     margin: auto;
 }
+
+.Object{
+    position: absolute;
+    top: 0;
+    left: 0;
+}

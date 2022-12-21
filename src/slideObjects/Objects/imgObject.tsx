@@ -1,6 +1,9 @@
 import React from "react";
+import styles from '../../App.module.css';
 
 interface imgProps{
+    x: number;
+    y: number;
     kWidth: number,
     kHeight: number,
     src: string
@@ -9,12 +12,16 @@ interface imgProps{
 function ImgObject(props: imgProps){
     return(
         <img 
-            src={props.src} 
-            alt=""
-            style={{
+            className={styles.Object}
+            style = {{
+                top: props.x, 
+                left: props.y,
                 width: props.kWidth,
                 height: props.kHeight
-            }}/>
+            }}
+            src={props.src} 
+            alt=""
+            />
     );
 }
 

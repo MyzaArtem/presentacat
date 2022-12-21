@@ -6,5 +6,6 @@
     transition: 0.1s;
     box-shadow: 0 9px 17px 9px rgba(0, 0, 0, 0.5);
     background: white;
+    overflow: hidden;
     /* box-sizing: border-box; */
 }

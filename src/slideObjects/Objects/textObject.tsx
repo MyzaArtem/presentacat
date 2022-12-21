@@ -1,6 +1,9 @@
 import React from "react";
+import styles from '../../App.module.css';
 
 interface textProps{
+    x: number;
+    y: number;
     fontFamily: string,
     fontColor: string,
     fontSize: number,
@@ -8,12 +11,15 @@ interface textProps{
     underline: boolean,
     data: string,
     kWidth: number,
-    kHeight: number
+    kHeight: number,
+    key: number,
 }
 
 function TextObject(props: textProps){
     return(
-        <div style={{
+        <textarea className={styles.Object} style={{
+            top: props.x, 
+            left: props.y,
             fontFamily: props.fontFamily,
             color: props.fontColor,
             fontSize: props.fontSize,
@@ -24,7 +30,7 @@ function TextObject(props: textProps){
             overflow: 'hidden'
         }}>
             {props.data}
-        </div>
+        </textarea>
     );
 }
 

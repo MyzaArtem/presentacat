@@ -54,6 +54,8 @@ import { type } from "os";
 
   export type SlideText = {
     type: 'text',
+    x: number,
+    y: number,
     data: string,
     fontFamily: string,
     fontColor: string,
@@ -61,11 +63,14 @@ import { type } from "os";
     fontWeight: number,
     underline: boolean,
     width: number,
-    height: number
+    height: number,
+    id: number
   };
 
   export type ImgObject =  {
     type: 'img';
+    x: number,
+    y: number,
     path: string;
     width: number;
     height: number;
@@ -75,6 +80,8 @@ import { type } from "os";
 
  export type FigureObject = {
    type: 'figure';
+   x: number;
+   y: number;
    figure: FigureType;
    strokeColor: string;
    background: null | string;

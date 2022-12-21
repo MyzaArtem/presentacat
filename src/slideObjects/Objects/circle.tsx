@@ -1,6 +1,9 @@
 import React from 'react';
+import styles from '../../App.module.css';
 
 interface CircleProps {
+    x: number;
+    y: number;
     kWidth: number;
     kHeight: number;
     borderColor: string
@@ -9,7 +12,7 @@ interface CircleProps {
 function Circle(props: CircleProps) {
 
     return (
-            <svg width={props.kWidth} height={props.kHeight}>
+            <svg className={styles.Object} style = {{top: props.x, left: props.y}} width={props.kWidth} height={props.kHeight}>
                 <circle
                     cx={Math.round(props.kWidth/2)}
                     cy={Math.round(props.kHeight/2)}

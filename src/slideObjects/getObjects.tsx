@@ -11,8 +11,7 @@ export default function getObjects(
     miniature: boolean
 ) {
 
-    return slide.elementList.map((node, index) => {
-
+    return slide.elementList.map((node, id) => {
         let width = miniature ? Math.round(node.width/4) : node.width;
         let height = miniature ? Math.round(node.height/5) : node.height;
         
@@ -20,6 +19,8 @@ export default function getObjects(
         if (node.type === 'text') {
             return (
                 <TextObject
+                    x = {miniature ? Math.round(node.x/4) : node.x}
+                    y = {miniature ? Math.round(node.y/5) : node.y}
                     kWidth={width}
                     kHeight={height}
                     fontFamily={node.fontFamily}
@@ -28,6 +29,7 @@ export default function getObjects(
                     fontWeight={node.fontWeight}
                     underline={node.underline}
                     data={node.data}
+                    key = {id}
                 />
 
             );
@@ -36,10 +38,12 @@ export default function getObjects(
         if (node.type === 'figure' && node.figure === 'circle') {
             return (
                 <Circle
+                    x = {miniature ? Math.round(node.x/4) : node.x}
+                    y = {miniature ? Math.round(node.y/5) : node.y}
                     kWidth={width}
                     kHeight={height}
                     borderColor={node.strokeColor}
-                    key={index}
+                    key={id}
                 />
             );
         }
@@ -47,27 +51,33 @@ export default function getObjects(
         if (node.type === 'figure' && node.figure === 'rectangle') {
             return (
                 <Rectangle
+                    x = {miniature ? Math.round(node.x/4) : node.x}
+                    y = {miniature ? Math.round(node.y/5) : node.y}
                     kWidth={width}
                     kHeight={height}
                     borderColor={node.strokeColor}
-                    key={index}
+                    key={id}
                 />
             );
         }
         if (node.type === 'figure' && node.figure === 'triangle') {
             return (
                 <Triangle
+                    x = {miniature ? Math.round(node.x/4) : node.x}
+                    y = {miniature ? Math.round(node.y/5) : node.y}
                     kWidth={width}
                     kHeight={height}
                     borderColor={node.strokeColor}
-                    key={index}
+                    key={id}
                 />
             );
         }
         if (node.type === 'img') {
             return (
                 <ImgObject
-                    key={index}
+                    x = {miniature ? Math.round(node.x/4) : node.x}
+                    y = {miniature ? Math.round(node.y/5) : node.y}   
+                    key={id}
                     kWidth={width}
                     kHeight={height}
                     src={node.path}
