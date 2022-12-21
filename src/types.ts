@@ -1,4 +1,3 @@
-import { type } from "os";
 
   export type PresentationHistory = {
     index: number,
