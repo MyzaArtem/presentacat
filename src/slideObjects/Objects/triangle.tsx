@@ -1,7 +1,11 @@
 import React from "react";
 import styles from '../../App.module.css';
+import { FigureObject, AppType} from "../../types";
 import { NodeType } from "../../types";
 import { connect } from 'react-redux';
+import { resizeNode } from "../../actions/actionsCreators";
+import { changeSelectedObject } from "../../actions/actionsCreators";
+import { moveItem } from "../../actions/actionsCreators";
 
 interface triangleProps{
     x: number;
@@ -22,6 +26,24 @@ function Triangle(props: triangleProps){
         </svg>
     );
 }
+
+interface TriangOwnProps {
+    node: FigureObject;
+    style: React.CSSProperties;
+    kWidth: number;
+    kHeight: number;
+    choosed: boolean;
+}
+
+const mapStateToProps = (state: AppType, ownProps: TriangOwnProps) => {
+    return ownProps;
+};
+
+const mapDispatchToProps = {
+    resizeNode,
+    changeSelectedObject,
+    moveItem,
+};
 
 export default Triangle;
 

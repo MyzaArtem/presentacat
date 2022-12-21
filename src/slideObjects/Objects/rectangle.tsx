@@ -1,8 +1,11 @@
 import React from "react";
 import styles from '../../App.module.css';
-import { NodeType, Presentation } from "../../types";
+import { NodeType,  AppType } from "../../types";
 import { FigureObject } from "../../types";
 import { connect } from 'react-redux';
+import { resizeNode } from "../../actions/actionsCreators";
+import { changeSelectedObject } from "../../actions/actionsCreators";
+import { moveItem } from "../../actions/actionsCreators";
 
 interface rectangleProps{
     x: number;
@@ -37,7 +40,7 @@ interface RectOwnProps {
     choosed: boolean;
 }
 
-const mapStateToProps = (state: Presentation, ownProps: RectOwnProps) => {
+const mapStateToProps = (state: AppType, ownProps: RectOwnProps) => {
     return ownProps;
 }
 

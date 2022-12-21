@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from '../../App.module.css';
-import { NodeType, Presentation } from '../../types';
+import { NodeType, AppType } from '../../types';
 import { FigureObject } from '../../types';
 import { connect } from 'react-redux';
+import { resizeNode } from "../../actions/actionsCreators";
+import { changeSelectedObject } from "../../actions/actionsCreators";
+import { moveItem } from "../../actions/actionsCreators";
 
 interface CircleProps {
     x: number;
@@ -39,7 +42,7 @@ interface CircleOwnProps {
     choosed: boolean;
 }
 
-const mapStateToProps = (state: Presentation, ownProps: CircleOwnProps) => {
+const mapStateToProps = (state: AppType, ownProps: CircleOwnProps) => {
     return ownProps;
 }
 

@@ -1,115 +1,121 @@
 export {}
-// presentation
-import { Presentation } from "./types";
-import { Slide } from "./types";
-import { defaultColor } from "./consts";
-import { blockContent } from "./types";
-import { pictureBackground } from "./types";
-import { color } from "./types";
+// AppType
+import {
+    SettingsObject,
+    SlideType,
+    AppType,
+    ImgObject,
+    TextObject,
+    ObjectsList,
+    FigureType,
+    FigureObject,
+} from "./types";
 
-function createPresentation(): Presentation {
+
+function createAppType(): AppType {
+    let slideArr: SlideCollection = []
     return {
         name: 'Новая презентация',
-        slideList: [],
-        selectedSlides: [],
-        currentSlide:  1,
+        slides: ;
+        selectedSlideTypes: [],
+        currentSlideType:  1,
     };
 }
-function savePresentation(presentation: Presentation): Presentation {
-    return presentation;
+function saveAppType(AppType: AppType): AppType {
+    return AppType;
 }
-function openPresentation(presentation: Presentation, file: object): Presentation {
-    return presentation;
+function openAppType(AppType: AppType, file: object): AppType {
+    return AppType;
 }
-function renamePresentation(presentation: Presentation, inputName: string): Presentation {
+function renameAppType(AppType: AppType, inputName: string): AppType {
     return{
-        ...presentation,
+        ...AppType,
         name: inputName
     };
 }
 
-// slide 
-function createSlide(presentation: Presentation): Presentation {
-    const newSlide: Slide = {
-        id: Date.now(),                        
-        elementList: [],
-        blockList: [],
-        selectedBlocks: [],
-        background: defaultColor,
-        selectedBlockList: [],
+// SlideType 
+function createSlide(AppType: AppType): AppType {
+    let objectsArr: ObjectsList = [];
+    const newSlideType: SlideType = {
+        id: String(Date.now()),                        
+        background: null,
+        objects: objectsArr,
+        nextZIndex: 0
+
     };
-    const newSlideList = [...presentation.slideList, newSlide];
+    const newSlideTypeList = [...AppType.SlideTypeList, newSlideType];
     return {
-        ...presentation,
-        slideList: newSlideList
+        ...AppType,
+        SlideTypeList: newSlideTypeList
     };
 }
-function removeSlide(presentation: Presentation, slideId: number): Presentation {
+function removeSlideType(AppType: AppType, SlideTypeId: number): AppType {
     return {
-        ...presentation,
-        slideList: presentation.slideList.filter((slide) => slide.id !== slideId)
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.filter((SlideType) => SlideType.id !== SlideTypeId)
     };
 }
 //
-function removeSlides(presentation: Presentation, slideIds: number[]): Presentation {
+function removeSlideTypes(AppType: AppType, SlideTypeIds: number[]): AppType {
     return {
-        ...presentation,
-        slideList: presentation.slideList.filter(slide => !slideIds.includes(slide.id))
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.filter(SlideType => !SlideTypeIds.includes(SlideType.id))
     }
 }
-function editSlideBackground(presentation: Presentation, slideId: number, newBackground: color | pictureBackground): Presentation {
-    const slide = presentation.slideList[slideId];
-    const newSlide: Slide = {
-        ...slide,
+function editSlideTypeBackground(AppType: AppType, SlideTypeId: number, newBackground: color | pictureBackground): AppType {
+    const SlideType = AppType.SlideTypeList[SlideTypeId];
+    const newSlideType: SlideType = {
+        ...SlideType,
         background: newBackground
     };
     return {
-        ...presentation,
-        slideList: presentation.slideList.map((currentSlide, id) => {
-            return (id == slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map((currentSlideType, id) => {
+            return (id == SlideTypeId) ? newSlideType : currentSlideType;
         })
     }
 }
-function selectSlide(presentation: Presentation, slideId: number): Presentation {
-    const slide = presentation.slideList.find((slide) => slide.id == slideId);
-    if (!slide) { 
-        return presentation
+function selectSlideType(AppType: AppType, SlideTypeId: number): AppType {
+    const SlideType = AppType.SlideTypeList.find((SlideType) => SlideType.id == SlideTypeId);
+    if (!SlideType) { 
+        return AppType
     }
-    const newSelectedSlideList = [...presentation.selectedSlides, slide];
+    const newSelectedSlideTypeList = [...AppType.selectedSlideTypes, SlideType];
     return {
-        ...presentation,
-        selectedSlides: newSelectedSlideList
+        ...AppType,
+        selectedSlideTypes: newSelectedSlideTypeList
     };
 }
-function selectSlides(presentation:Presentation, slideIdes: number[]): Presentation {
-    slideIdes.forEach((item) => {
-        selectSlide(presentation, item);
+function selectSlideTypes(AppType:AppType, SlideTypeIdes: number[]): AppType {
+    SlideTypeIdes.forEach((item) => {
+        selectSlideType(AppType, item);
     });
     return {
-        ...presentation,                  
+        ...AppType,                  
     }
 }
-function moveSlide(presentation: Presentation, oldslideId: number, newslideId: number): Presentation {
-    const slide = presentation.slideList[oldslideId]
+function moveSlideType(AppType: AppType, oldSlideTypeId: number, newSlideTypeId: number): AppType {
+    const SlideType = AppType.SlideTypeList[oldSlideTypeId]
 
-    const newSlide = {
-        ...slide,
-        slideId: newslideId
+    const newSlideType = {
+        ...SlideType,
+        SlideTypeId: newSlideTypeId
     }
-    const newSlideList = [...presentation.slideList];
+    const newSlideTypeList = [...AppType.SlideTypeList];
 
-    [newSlideList[oldslideId], newSlideList[newslideId]] = [newSlideList[newslideId], newSlideList[oldslideId]]
+    [newSlideTypeList[oldSlideTypeId], newSlideTypeList[newSlideTypeId]] = [newSlideTypeList[newSlideTypeId], newSlideTypeList[oldSlideTypeId]]
     return {
-        ...presentation,
-        slideList: newSlideList
+        ...AppType,
+        SlideTypeList: newSlideTypeList
     };
 }
 
 // block functions
-function createBlock(presentation: Presentation, slideId: number, inputContent: blockContent): Presentation {
+function createBlock(AppType: AppType, SlideTypeId: number, inputContent: blockContent): AppType {
     const newBlock = {
         content: inputContent,
-        blockId: presentation.slideList[slideId].blockList.length++,
+        blockId: AppType.SlideTypeList[SlideTypeId].blockList.length++,
         position: {
             x: 1,
             y: 1
@@ -118,54 +124,54 @@ function createBlock(presentation: Presentation, slideId: number, inputContent: 
         height: 50
     }
     //
-    const newBlockList = [...presentation.slideList[slideId].blockList, newBlock];
-    const newSlide = {
-        ...presentation.slideList[slideId],
+    const newBlockList = [...AppType.SlideTypeList[SlideTypeId].blockList, newBlock];
+    const newSlideType = {
+        ...AppType.SlideTypeList[SlideTypeId],
         blockList: newBlockList
     }
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id == slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id == SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
 
-function removeBlock(presentation: Presentation, blockId: number, slideId: number): Presentation {
-    const slideList = presentation.slideList;
+function removeBlock(AppType: AppType, blockId: number, SlideTypeId: number): AppType {
+    const SlideTypeList = AppType.SlideTypeList;
     //
-    const slide = slideList[slideId];
-    const newSlide = {
-        ...slide,
-        blockList: slide.blockList.filter((block, id) => id !== slideId)
+    const SlideType = SlideTypeList[SlideTypeId];
+    const newSlideType = {
+        ...SlideType,
+        blockList: SlideType.blockList.filter((block, id) => id !== SlideTypeId)
     }
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id === slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id === SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
 
-function selectBlock(presentation: Presentation, slideId: number, blockId: number): Presentation {
-    const newSelectedBlock = presentation.slideList[slideId].blockList[blockId];
-    const newSelectedBlockList = [...presentation.slideList[slideId].selectedBlockList, newSelectedBlock];
+function selectBlock(AppType: AppType, SlideTypeId: number, blockId: number): AppType {
+    const newSelectedBlock = AppType.SlideTypeList[SlideTypeId].blockList[blockId];
+    const newSelectedBlockList = [...AppType.SlideTypeList[SlideTypeId].selectedBlockList, newSelectedBlock];
     //
-    const newSlide = {
-        ...presentation.slideList[slideId],
+    const newSlideType = {
+        ...AppType.SlideTypeList[SlideTypeId],
         selectedBlockList: newSelectedBlockList
     }
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id === slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id === SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
 
-function moveBlock(presentation: Presentation, slideId: number, blockId: number, inputX: number, inputY: number ): Presentation {
-    const slide = presentation.slideList[slideId];
-    const block = slide.blockList[blockId];
+function moveBlock(AppType: AppType, SlideTypeId: number, blockId: number, inputX: number, inputY: number ): AppType {
+    const SlideType = AppType.SlideTypeList[SlideTypeId];
+    const block = SlideType.blockList[blockId];
     const newBlock = {
         ...block,
         position: {
@@ -173,151 +179,151 @@ function moveBlock(presentation: Presentation, slideId: number, blockId: number,
             y: inputY
         }
     }
-    const newSlide = {
-        ...slide,
-        blockList: slide.blockList.map(( currentBlock, id) => {
+    const newSlideType = {
+        ...SlideType,
+        blockList: SlideType.blockList.map(( currentBlock, id) => {
             return (id == blockId) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id == slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id == SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
-function editBlockSize(presentation: Presentation, slideId: number, blockId: number, newWidth: number, newHeight: number): Presentation {
-    const slide = presentation.slideList[slideId];
-    const block = slide.blockList[blockId];
+function editBlockSize(AppType: AppType, SlideTypeId: number, blockId: number, newWidth: number, newHeight: number): AppType {
+    const SlideType = AppType.SlideTypeList[SlideTypeId];
+    const block = SlideType.blockList[blockId];
     const newBlock = {
         ...block,
         width: newWidth,
         height: newHeight
     }
-    const newSlide = {
-        ...slide,
-        blockList: slide.blockList.map(( currentBlock, id) => {
+    const newSlideType = {
+        ...SlideType,
+        blockList: SlideType.blockList.map(( currentBlock, id) => {
             return (id == blockId) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id == slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id == SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
 
 // content of block functions
-function editFontFamily(presentation: Presentation, slideId: number, blockId: number, newFontFamily: string): Presentation {
-    const slide = presentation.slideList[slideId];
-    const block = slide.blockList[blockId];
+function editFontFamily(AppType: AppType, SlideTypeId: number, blockId: number, newFontFamily: string): AppType {
+    const SlideType = AppType.SlideTypeList[SlideTypeId];
+    const block = SlideType.blockList[blockId];
     const newBlock = {
         ...block,
         fontFamily: newFontFamily
     };
-    const newSlide = {
-        ...slide,
-        blockList: slide.blockList.map(( currentBlock, id) => {
+    const newSlideType = {
+        ...SlideType,
+        blockList: SlideType.blockList.map(( currentBlock, id) => {
             return (id == blockId) ? newBlock : currentBlock;
     })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id == slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id == SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
-function editFontSize(presentation: Presentation, slideId: number, blockId: number, newFontSize: string): Presentation {
-    const slide = presentation.slideList[slideId];
-    const block = slide.blockList[blockId];
+function editFontSize(AppType: AppType, SlideTypeId: number, blockId: number, newFontSize: string): AppType {
+    const SlideType = AppType.SlideTypeList[SlideTypeId];
+    const block = SlideType.blockList[blockId];
     const newBlock = {
         ...block,
         fontSize: newFontSize
     };
-    const newSlide = {
-        ...slide,
-        blockList: slide.blockList.map(( currentBlock, id) => {
+    const newSlideType = {
+        ...SlideType,
+        blockList: SlideType.blockList.map(( currentBlock, id) => {
             return (id == blockId) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id == slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id == SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
-function editFontColor(presentation: Presentation, slideId: number, blockId: number, newFontColor: string): Presentation {
-    const slide = presentation.slideList[slideId];
-    const block = slide.blockList[blockId];
+function editFontColor(AppType: AppType, SlideTypeId: number, blockId: number, newFontColor: string): AppType {
+    const SlideType = AppType.SlideTypeList[SlideTypeId];
+    const block = SlideType.blockList[blockId];
     const newBlock = {
         ...block,
         fontColor: newFontColor
     };
-    const newSlide = {
-        ...slide,
-        blockList: slide.blockList.map(( currentBlock, id) => {
+    const newSlideType = {
+        ...SlideType,
+        blockList: SlideType.blockList.map(( currentBlock, id) => {
             return (id == blockId) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id == slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id == SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
-function editTextSymbols(presentation: Presentation, slideId: number, blockId: number, newSymbols: string): Presentation {
-    const slide = presentation.slideList[slideId];
-    const block = slide.blockList[blockId];
+function editTextSymbols(AppType: AppType, SlideTypeId: number, blockId: number, newSymbols: string): AppType {
+    const SlideType = AppType.SlideTypeList[SlideTypeId];
+    const block = SlideType.blockList[blockId];
     const newBlock = {
         ...block,
         symbols: newSymbols
     };
-    const newSlide = {
-        ...slide,
-        blockList: slide.blockList.map(( currentBlock, id) => {
+    const newSlideType = {
+        ...SlideType,
+        blockList: SlideType.blockList.map(( currentBlock, id) => {
             return (id == blockId) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id == slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id == SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
-function editPrimitiveBackground(presentation: Presentation, slideId: number, blockId: number, newPrimitiveBackground: string): Presentation {
-    const slide = presentation.slideList[slideId];
-    const block = slide.blockList[blockId];
+function editPrimitiveBackground(AppType: AppType, SlideTypeId: number, blockId: number, newPrimitiveBackground: string): AppType {
+    const SlideType = AppType.SlideTypeList[SlideTypeId];
+    const block = SlideType.blockList[blockId];
     const newBlock = {
         ...block,
         background: newPrimitiveBackground
     };
-    const newSlide = {
-        ...slide,
-        blockList: slide.blockList.map(( currentBlock, id) => {
+    const newSlideType = {
+        ...SlideType,
+        blockList: SlideType.blockList.map(( currentBlock, id) => {
             return (id == blockId) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id == slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id == SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
-function editPrimitiveBorder(presentation: Presentation, slideId: number, blockId: number, newPrimitiveBorder: string): Presentation {
-    const slide = presentation.slideList[slideId];
-    const block = slide.blockList[blockId];
+function editPrimitiveBorder(AppType: AppType, SlideTypeId: number, blockId: number, newPrimitiveBorder: string): AppType {
+    const SlideType = AppType.SlideTypeList[SlideTypeId];
+    const block = SlideType.blockList[blockId];
     const newBlock = {
         ...block,
         border: newPrimitiveBorder
     };
-    const newSlide = {
-        ...slide,
-        blockList: slide.blockList.map(( currentBlock, id) => {
+    const newSlideType = {
+        ...SlideType,
+        blockList: SlideType.blockList.map(( currentBlock, id) => {
             return (id == blockId) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, id) => {
-            return (id == slideId) ? newSlide : currentSlide;
+        ...AppType,
+        SlideTypeList: AppType.SlideTypeList.map(( currentSlideType, id) => {
+            return (id == SlideTypeId) ? newSlideType : currentSlideType;
         })
     };
 }
