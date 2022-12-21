@@ -1,127 +1,82 @@
+export type Cords = {
+  x: number;
+  y: number;
+};
 
-  export type PresentationHistory = {
-    index: number,
-    states: [],
-  }; 
-  
-  export type SlideAnimation = {
-    fadeIn: number,
-    fadeOut: number,
-  };
-  
-  export type Border = {
-    width: number,
-    type: string,
-    color: string,
-  };
-  
-  export type Image = {
-    url: string,
-  };
-  
-  // export type SlideElement = {
-  //   id: string,
-  //   width: number,
-  //   heigth: number,
-  //   position: {
-  //     x: number,
-  //     y: number,
-  //   },
-  //   color: string,
-  //   border: Border,
-  //   data: Image
-  // };
-  
-  export type pictureBackground = {
-    url: string;
-  }
+export type NodeType = 'text' | 'img' | 'figure';
 
-  export type color = {
-    codeColor: string;
-  }
-
-  export type Block = {
-  content: blockContent;
-  blockId: number;
-  position: {
-      x: number;
-      y: number;
-  };
+export type SlideObject = {
+  type: NodeType;
+  id: string;
   width: number;
   height: number;
-  }
+  positionTopLeft: Cords;
+  zIndex: number;
+};
 
-  export type SlideText = {
-    type: 'text',
-    x: number,
-    y: number,
-    data: string,
-    fontFamily: string,
-    fontColor: string,
-    fontSize: number,
-    fontWeight: number,
-    underline: boolean,
-    width: number,
-    height: number,
-    id: number
-  };
+export type TextObject = SlideObject & {
+  type: 'text';
+  data: string;
+  fontFamily: string;
+  fontSize: number;
+  color: string;
+  fontStyle: 'unset' | 'italic';
+  fontWeight: 700 | 400;
+  fontDecoration: 'unset' | 'underline';
+  alignment: 'center' | 'right' | 'left';
+};
 
-  export type ImgObject =  {
-    type: 'img';
-    x: number,
-    y: number,
-    path: string;
-    width: number;
-    height: number;
- };
+export type ImgObject = SlideObject & {
+  type: 'img';
+  path: string;
+};
 
- export type FigureType = 'circle' | 'rectangle' | 'triangle';
+export type FigureType = 'circle' | 'rectangle' | 'triangle'| 'line';
 
- export type FigureObject = {
-   type: 'figure';
-   x: number;
-   y: number;
-   figure: FigureType;
-   strokeColor: string;
-   background: null | string;
-   strokeWidth: number;
-   borderRadius: number;
-   width: number;
-   height: number;
+export type FigureObject = SlideObject & {
+  type: 'figure';
+  figure: FigureType;
+  strokeColor: string;
+  background: null | string;
+  strokeWidth: number;
+  borderRadius: number;
 }
 
-  export type SlideNode = SlideText | ImgObject | FigureObject;
+export type SlideNode = TextObject | ImgObject | FigureObject;
 
-  export type NodeType = 'text' | 'img' | 'figure';
+export type ObjectsList = Array<SlideNode>;
 
-  export type ObjectsList = Array<SlideNode>;
+export type SlideType = {
+  id: string;
+  objects: ObjectsList;
+  background: string | null;
+  nextZIndex: number;
+};
 
-  export type Slide = {
-    id: number,
-    elementList: ObjectsList,
-    selectedBlocks: Primitive[], //хранит данные выделенных элементов
-    background: color | pictureBackground,
-    blockList: Block[];
-    selectedBlockList: Block[];
-  };
-  
-  export type Presentation = {
-    name: string,
-    slideList: Slide[],
-    currentSlide: number,
-    selectedSlides: Slide[], 
-  };
-  
-  export type Primitive = {
-    type: string,
-  };
-  
-  export type Editor = {
-    mode: string,
-    history: PresentationHistory[],
-    presentation: Presentation,
-  };
+export type SettingsObject = {
+  slideWidth: number;
+  slideHeight: number;
+};
 
-  export type blockContent = {
-    data:  Primitive | Image | SlideText;
-  }
+export type SlidesObject = {
+   current: string | null;
+   slides: SlideCollection;
+}
+
+export type AppType = {
+  name: string;
+  slides: SlidesObject;
+  settings: SettingsObject;
+  choosedObject: choosedObjectType;
+  bufferedObject: SlideNode | SlideType | null;
+  usedColors: Array<string>;
+};
+
+export type SlideCollection = Array<SlideType>;
+
+export type choosedObjectType = {
+   id: string | null;
+   type: NodeType | null;
+}
+
+export type History = Array<AppType>;
