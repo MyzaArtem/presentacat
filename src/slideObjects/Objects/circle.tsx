@@ -6,7 +6,10 @@ interface CircleProps {
     y: number;
     kWidth: number;
     kHeight: number;
-    borderColor: string
+    borderColor: string;
+    resizeNode: (width: number, height: number) => void;
+    changeSelectedObject: (id: string, type: NodeType) => void;
+    moveItem: (x: number, y: number) => void;
 }
 
 function Circle(props: CircleProps) {
@@ -23,6 +26,14 @@ function Circle(props: CircleProps) {
                 </circle>
             </svg>
     );
+}
+
+interface CircleOwnProps {
+    node: FigureObject;
+    style: React.CSSProperties;
+    kWidth: number;
+    kHeight: number;
+    choosed: boolean;
 }
 
 export default Circle;
