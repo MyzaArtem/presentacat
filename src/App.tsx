@@ -86,8 +86,8 @@ function App() {
   return (
     <div className={styles.app}>
       <div className={styles.workingArea}>
-        <SlideViewport slides={slideData}/>
         <SlideMiniature slides={slideData}/>
+        <SlideViewport slides={slideData}/>
       </div>
     </div>
   );
