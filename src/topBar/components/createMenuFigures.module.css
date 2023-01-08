@@ -1,0 +1,37 @@
+.instrumentsButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 50%;
+}
+
+.instrumentsBlock {
+    flex-direction: column;
+    align-items: center;
+    max-width: 8vh;
+    min-width: 0vh;
+    position: absolute;
+    margin-top: 47vh;
+    min-height: 37vh;
+    background-color: #DB1417;
+    border-radius: 35px;
+}
+
+.instrumentsButtonBlock {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    width: 10%;
+    justify-content: center;
+    position: relative;
+}
+
+.openInstrumentsBtn {
+    display: flex;
+    background-size: cover;
+    height: 50%;
+    width: 80%;
+}

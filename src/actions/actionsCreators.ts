@@ -1,5 +1,43 @@
-import { FigureType } from "../types";
-import { NodeType } from "../types";
+import { FigureType, NodeType } from '../types/types';
+
+export type choosedObjectReducerAction =
+    | changeSelectedObjectActionType
+    | changeSlideActionType
+    | deleteSlideObjectActionType;
+export type currSlideIdReducerAction = changeSlideActionType;
+export type titleReducerAction = changePresentationNameActionType;
+export type slideReducerAction =
+    | setSlideBgActionType
+    | moveItemActionType
+    | addSlideActionType
+    | addFigureActionType
+    | addTextActionType
+    | addImageActionType
+    | deleteSlideActionType
+    | deleteSlideObjectActionType
+    | changeTextDataActionType
+    | changeTextColorActionType
+    | changeTextFontSizeActionType
+    | changeTextFontFamilyActionType
+    | toggleBoldTextActionType
+    | toggleItalicTextActionType
+    | toggleUnderlinedTextActionType
+    | resizeNodeActionType
+    | figureBackgroundSetActionType
+    | strokeColorSetActionType
+    | strokeResizeActionType
+    // | cutSlideNodeActionType;
+export type actionType =
+    // | bufferedIdReducerAction
+    | choosedObjectReducerAction
+    | currSlideIdReducerAction
+    | titleReducerAction
+    | slideReducerAction
+    | exportAppActionType
+    | exportPDFActionType
+    | redoActionType
+    | undoActionType
+    | createNewActionType;
 
 interface redoActionType {
     type: 'REDO';
@@ -28,14 +66,14 @@ export function undo(): undoActionType {
     };
 }
 
-interface cutSlideNodeActionType {
-    type: 'CUT_SLIDE_NODE';
-}
-export function cutSlideNode(): cutSlideNodeActionType {
-    return {
-        type: 'CUT_SLIDE_NODE',
-    };
-}
+// interface cutSlideNodeActionType {
+//     type: 'CUT_SLIDE_NODE';
+// }
+// export function cutSlideNode(): cutSlideNodeActionType {
+//     return {
+//         type: 'CUT_SLIDE_NODE',
+//     };
+// }
 
 interface exportAppActionType {
     type: 'EXPORT_APP';
@@ -82,23 +120,23 @@ export function changeSelectedObject(
     };
 }
 
-export interface copyObjectActionType {
-    type: 'COPY_OBJECT';
-}
-export function copyObject(): copyObjectActionType {
-    return {
-        type: 'COPY_OBJECT',
-    };
-}
+// export interface copyObjectActionType {
+//     type: 'COPY_OBJECT';
+// }
+// export function copyObject(): copyObjectActionType {
+//     return {
+//         type: 'COPY_OBJECT',
+//     };
+// }
 
-export interface pasteObjectActionType {
-    type: 'PASTE_OBJECT';
-}
-export function pasteObject(): pasteObjectActionType {
-    return {
-        type: 'PASTE_OBJECT',
-    };
-}
+// export interface pasteObjectActionType {
+//     type: 'PASTE_OBJECT';
+// }
+// export function pasteObject(): pasteObjectActionType {
+//     return {
+//         type: 'PASTE_OBJECT',
+//     };
+// }
 
 export interface strokeResizeActionType {
     type: 'RESIZE_FIGURE_STROKE';
@@ -111,34 +149,34 @@ export function strokeResize(strokeWidth: number): strokeResizeActionType {
     };
 }
 
-export interface changeRectBorderRadiusActionType {
-    type: 'CHANGE_FIGURE_BORDER_RADIUS';
-    newRadius: number;
-}
-export function changeRectBorderRadius(
-    newRadius: number
-): changeRectBorderRadiusActionType {
-    return {
-        type: 'CHANGE_FIGURE_BORDER_RADIUS',
-        newRadius,
-    };
-}
+// export interface changeRectBorderRadiusActionType {
+//     type: 'CHANGE_FIGURE_BORDER_RADIUS';
+//     newRadius: number;
+// }
+// export function changeRectBorderRadius(
+//     newRadius: number
+// ): changeRectBorderRadiusActionType {
+//     return {
+//         type: 'CHANGE_FIGURE_BORDER_RADIUS',
+//         newRadius,
+//     };
+// }
 
-export interface changeSlideOrderActionType {
-    type: 'CHANGE_SLIDE_ORDER';
-    slideId: string;
-    slideAfterId: string;
-}
-export function changeSlideOrder(
-    slideId: string,
-    slideAfterId: string
-): changeSlideOrderActionType {
-    return {
-        type: 'CHANGE_SLIDE_ORDER',
-        slideId,
-        slideAfterId,
-    };
-}
+// export interface changeSlideOrderActionType {
+//     type: 'CHANGE_SLIDE_ORDER';
+//     slideId: string;
+//     slideAfterId: string;
+// }
+// export function changeSlideOrder(
+//     slideId: string,
+//     slideAfterId: string
+// ): changeSlideOrderActionType {
+//     return {
+//         type: 'CHANGE_SLIDE_ORDER',
+//         slideId,
+//         slideAfterId,
+//     };
+// }
 
 export interface strokeColorSetActionType {
     type: 'CHANGE_FIGURE_STROKE_COLOR';
@@ -207,18 +245,18 @@ export function toggleUnderlinedText(): toggleUnderlinedTextActionType {
     };
 }
 
-export interface changeTextAlignmentActionType {
-    type: 'CHANGE_TEXT_ALIGNMENT';
-    alignment: 'right' | 'center' | 'left';
-}
-export function changeTextAlignment(
-    alignment: 'right' | 'center' | 'left'
-): changeTextAlignmentActionType {
-    return {
-        type: 'CHANGE_TEXT_ALIGNMENT',
-        alignment,
-    };
-}
+// export interface changeTextAlignmentActionType {
+//     type: 'CHANGE_TEXT_ALIGNMENT';
+//     alignment: 'right' | 'center' | 'left';
+// }
+// export function changeTextAlignment(
+//     alignment: 'right' | 'center' | 'left'
+// ): changeTextAlignmentActionType {
+//     return {
+//         type: 'CHANGE_TEXT_ALIGNMENT',
+//         alignment,
+//     };
+// }
 
 export interface changeTextFontFamilyActionType {
     type: 'CHANGE_TEXT_FONT_FAMILY';
@@ -290,14 +328,14 @@ export function moveItem(x: number, y: number): moveItemActionType {
     };
 }
 
-export interface decreaseZIndexActionType {
-    type: 'DECREASE_Z_INDEX';
-}
-export function decreaseZIndex(): decreaseZIndexActionType {
-    return {
-        type: 'DECREASE_Z_INDEX',
-    };
-}
+// export interface decreaseZIndexActionType {
+//     type: 'DECREASE_Z_INDEX';
+// }
+// export function decreaseZIndex(): decreaseZIndexActionType {
+//     return {
+//         type: 'DECREASE_Z_INDEX',
+//     };
+// }
 
 export interface changePresentationNameActionType {
     type: 'CHANGE_PRESENTATION_NAME';
@@ -372,11 +410,11 @@ export function deleteSlideObject(): deleteSlideObjectActionType {
     };
 }
 
-export interface increaseZIndexActionType {
-    type: 'INCREASE_ZINDEX';
-}
-export function increaseZIndex(): increaseZIndexActionType {
-    return {
-        type: 'INCREASE_ZINDEX',
-    };
-}
+// export interface increaseZIndexActionType {
+//     type: 'INCREASE_ZINDEX';
+// }
+// export function increaseZIndex(): increaseZIndexActionType {
+//     return {
+//         type: 'INCREASE_ZINDEX',
+//     };
+// }

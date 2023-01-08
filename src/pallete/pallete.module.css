@@ -1,0 +1,45 @@
+.pallete {
+    display: flex;
+    width: 30%;
+    height: 50%;
+    flex-direction: column;
+    position: absolute;
+    left: 33%;
+    top: 20%;
+    z-index: 9999;    
+    border: 2px solid #D9D9D9;
+}
+
+.pallete_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15%;
+    background: #DB1417;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+
+.pallete_color_blocks {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    /* grid-template-rows: repeat(7, auto); */
+    width: 100%;
+    height: 85%;
+    background: #D9D9D9;
+    justify-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.colorBlock {
+    width: 40%;
+    height: 80%;
+    cursor: pointer;
+    border-radius: 5px;
+}

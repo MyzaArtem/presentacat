@@ -1,0 +1,48 @@
+.textMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.textMenu_icons {
+    width: 50px;
+    height: 30px;
+}
+
+.fontFamily_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    padding: 4px;
+    width: 100%;
+    height: 30%;
+    margin-left: 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.changeFontBtnStyle {
+    display: flex;
+    align-items: center;
+}
+
+.FontSelect_block {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 9999;
+    color: white;
+    width: 10vh;
+    background-color: #DB1417;
+    border-radius: 16px;
+    height: 35vh;
+    margin-top: 45vh;
+    margin-left: 5vh;
+}
+
+.button_settings_text {
+    display: flex;
+    align-items: center;
+}

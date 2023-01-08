@@ -1,24 +1,83 @@
 import React from 'react';
 import styles from './slideviewport.module.css';
-import Triangle from '../slideObjects/Objects/triangle';
-import { Slide } from '../types';
+import { AppType, NodeType, SettingsObject, SlidesObject } from '../types/types';
 import getObjects from '../slideObjects/getObjects';
-
+import {
+    changeSelectedObject,
+    changeSlide,
+} from '../actions/actionsCreators';
+import { Context } from '../index';
+import { connect } from 'react-redux';
 
 interface SlideViewportProps {
-    slides: Slide;
+    settings: SettingsObject;
+    slides: SlidesObject;
+    selectedId: string | null;
+    changeSelectedObject: (id: string | null, type: NodeType | null) => void;
+    changeSlide: (id: string) => void;
 }
 
 function SlideViewport(props: SlideViewportProps) {
-    
+    let slide = props.slides.slides.find((slide) => slide.id === props.slides.current);
+    if (!slide) throw new Error();
+
+    const settings = React.useContext(Context);
+    let slideStyles = {
+        width: settings.slideWidth + 'px',
+        height: settings.slideHeight + 'px',
+    };
+    let slideStyles2;
+    if (slide.background) {
+        if (slide.background.indexOf('base64') === -1) {
+            slideStyles2 = {
+                ...slideStyles,
+                backgroundColor: slide.background,
+            };
+        } else {
+            slideStyles2 = {
+                ...slideStyles,
+                backgroundImage: 'url(' + slide.background + ')',
+                backgroundSize: `${settings.slideWidth}px ${settings.slideHeight}px`
+            };
+        }
+    }
     return (
         <div
-            className={styles.slide}
+            className={styles.slideViewport}
+            style={{ height: settings.slideHeight + 'px' }}
         >
-            {getObjects(props.slides, false)}
+            <div
+                className={styles.slide}
+                style={slideStyles2 ? slideStyles2 : slideStyles}
+                onClick={(event: React.MouseEvent<HTMLElement>) => {
+                    if (!event.isDefaultPrevented()) {
+                        props.changeSelectedObject(null, null);
+                    }
+                }}
+            >
+                {getObjects(slide, 1, 1, props.selectedId, props.changeSelectedObject)}
+            </div>
         </div>
     );
 }
 
+interface SlideViewportOwnProps {
+    settings: SettingsObject;
+    slides: SlidesObject;
+    selectedId: string | null;
+}
 
-export default SlideViewport;
+const mapStateToProps = (state: AppType): SlideViewportOwnProps => {
+    return {
+        settings: state.settings,
+        slides: state.slides,
+        selectedId: state.choosedObject.id,
+    };
+};
+
+const mapDispatchToProps = {
+    changeSelectedObject,
+    changeSlide
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SlideViewport);

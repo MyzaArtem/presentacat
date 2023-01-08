@@ -11,7 +11,6 @@ export type SlideObject = {
   width: number;
   height: number;
   positionTopLeft: Cords;
-  zIndex: number;
 };
 
 export type TextObject = SlideObject & {
@@ -23,7 +22,6 @@ export type TextObject = SlideObject & {
   fontStyle: 'unset' | 'italic';
   fontWeight: 700 | 400;
   fontDecoration: 'unset' | 'underline';
-  alignment: 'center' | 'right' | 'left';
 };
 
 export type ImgObject = SlideObject & {
@@ -31,7 +29,7 @@ export type ImgObject = SlideObject & {
   path: string;
 };
 
-export type FigureType = 'circle' | 'rectangle' | 'triangle'| 'line';
+export type FigureType = 'circle' | 'rectangle' | 'triangle';
 
 export type FigureObject = SlideObject & {
   type: 'figure';
@@ -39,7 +37,6 @@ export type FigureObject = SlideObject & {
   strokeColor: string;
   background: null | string;
   strokeWidth: number;
-  borderRadius: number;
 }
 
 export type SlideNode = TextObject | ImgObject | FigureObject;
@@ -50,7 +47,6 @@ export type SlideType = {
   id: string;
   objects: ObjectsList;
   background: string | null;
-  nextZIndex: number;
 };
 
 export type SettingsObject = {
@@ -68,8 +64,6 @@ export type AppType = {
   slides: SlidesObject;
   settings: SettingsObject;
   choosedObject: choosedObjectType;
-  bufferedObject: SlideNode | SlideType | null;
-  usedColors: Array<string>;
 };
 
 export type SlideCollection = Array<SlideType>;

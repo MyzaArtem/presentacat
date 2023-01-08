@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+.topBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 65%;
+    height: 10vh;
+    background: #DB1417;
+    border-radius: 35px;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+.exportBtn {
+    height: 100%;
+    width: 30%;
+    cursor: pointer;
+}
+
+.mainMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mainMenu_block {
+    display: flex;
+    position: relative;
+    align-items: center;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 37px;
+    color: #FFF;
+
+}
+
+.mainMenu_file_settings_block {
+    display: flex;
+    flex-direction: column;
+    padding: 1vh;
+    width: 13vh;
+    height: 7vh;
+    position: absolute;
+    top: 17%;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 17px;
+    color: #FFFFFF;
+    background: #DB1417;
+    opacity: 0.9;
+    border-radius: 7px;
+    z-index: 9999;
+}
+
+.mainMenu_correction_settings_block {
+    display: flex;
+    flex-direction: column;
+    padding: 1vh;
+    width: 20vh;
+    height: 7vh;
+    position: absolute;
+    top: 17%;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 17px;
+    color: #FFFFFF;    
+    background: #DB1417;
+    opacity: 0.9;
+    border-radius: 7px;
+    z-index: 9999;
+}
+
+.mainMenu_file_settings_block_button {
+    cursor: pointer;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 17px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.mainMenu_correction_settings_block_button{
+    cursor: pointer;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 17px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.topbar__input {
+    background-color: transparent;
+    border-radius: 5px;
+    border: 0;
+}
+
+.topbar__input:active,
+.topbar__input:focus {
+    outline: none;
+}
+
+.topbar__input::placeholder,
+.topbar__input {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 46px;
+    line-height: 63.9%;
+    color: #DB1417;    
+}
+
+.topbar_cloud {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.cats_icon {
+    position: absolute;
+    width: 40vh;
+    /* width: 41vh;
+    height: 22vh;
+    top: -55%;
+    margin-left: auto; */
+}
+
+.cats_icon:hover {
+    animation: 1.2s ease-in-out 0s normal none infinite running trambling-animation;
+}
+@keyframes trambling-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(15deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+
+}
