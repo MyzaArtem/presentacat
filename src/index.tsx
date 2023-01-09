@@ -7,7 +7,6 @@ import { createStore, Store } from 'redux';
 import presentationReducers from './redusers/presentationReducers';
 import { AppType } from './types/types';
 import { Provider } from 'react-redux';
-import WebFont from 'webfontloader';
 
 export const slideWidth = 1000;
 export const slideHeight = 700;

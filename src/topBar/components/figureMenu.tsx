@@ -5,7 +5,6 @@ import {
     getSlideNode,
     getCurrentSlide,
 } from '../../functionts/supportMethods';
-// import Palette from '../../pallete/pallete';
 import { strokeResize } from '../../actions/actionsCreators';
 import SelectElement from './SelectElement';
 import { connect } from 'react-redux';

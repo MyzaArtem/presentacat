@@ -316,10 +316,6 @@ export function deleteSlideObject(
     return replaceSlide(slides, newSlide);
 }
 
-function isSlide(obj: SlideNode | SlideType): obj is SlideType {
-    return (obj as SlideType).objects !== undefined;
-}
-
 export function deleteSlide(
     slides: SlidesObject 
 ): SlidesObject {

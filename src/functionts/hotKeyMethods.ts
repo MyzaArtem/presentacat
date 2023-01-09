@@ -6,14 +6,20 @@ export default function useHotKeys(
 ) {
     function undoHotKey(e: KeyboardEvent) {
         if (e.key === 'z' && (e.metaKey || e.ctrlKey)) {
-            if (e.shiftKey) redo();
-            else undo();
+            undo();
+        }
+    }
+    function redoHotKey(e: KeyboardEvent) {
+        if (e.key === 'y' && (e.metaKey || e.ctrlKey)) {
+            redo();
         }
     }
     React.useEffect(() => {
         window.addEventListener('keydown', undoHotKey);
+        window.addEventListener('keydown', redoHotKey);
         return () => {
             window.removeEventListener('keydown', undoHotKey);
+            window.removeEventListener('keydown', redoHotKey);
         };
     });
 }

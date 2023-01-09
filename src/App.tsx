@@ -18,22 +18,27 @@ import {
     undo
 } from './actions/actionsCreators';
 import CreateMenuFigures from './topBar/components/createMenuFigures'
-import slideCarousel from './slideCarousel/slideCarousel';
 import SlideCarousel from './slideCarousel/slideCarousel';
+import { store } from './index';
 
 
 //init values
 export const paletteSampleColors = [
-  '#000000',
-  '#9c3838',
-  '#563096',
-  '#25b334',
-  '#aedb27',
-  '#e6630b',
-  '#0b6ee6',
-  '#0be6d0',
-  '#ff0000',
-  '#ffffff'
+  '#F5F5F5',
+  '#F3E98C',
+  '#FEDB03',
+  '#EF8517',
+  '#DC1417',
+  '#64ACD0',
+  '#8122E0',
+  '#86BA34',
+  '#4AAF8F',
+  '#832812',
+  '#FAC86E',
+  '#595D69',
+  '#EF71A7',
+  '#184181',
+  '#000000'
 ];
 
 export const fonts = [
@@ -75,6 +80,7 @@ function App(props: AppProps) {
   React.useEffect(() => {
       document.title = props.name;
   });
+  console.log(store.getState())
   return (
         <div className={styles.app}>
           <div className={styles.workingArea}>

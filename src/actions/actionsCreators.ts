@@ -66,15 +66,6 @@ export function undo(): undoActionType {
     };
 }
 
-// interface cutSlideNodeActionType {
-//     type: 'CUT_SLIDE_NODE';
-// }
-// export function cutSlideNode(): cutSlideNodeActionType {
-//     return {
-//         type: 'CUT_SLIDE_NODE',
-//     };
-// }
-
 interface exportAppActionType {
     type: 'EXPORT_APP';
 }
@@ -120,24 +111,6 @@ export function changeSelectedObject(
     };
 }
 
-// export interface copyObjectActionType {
-//     type: 'COPY_OBJECT';
-// }
-// export function copyObject(): copyObjectActionType {
-//     return {
-//         type: 'COPY_OBJECT',
-//     };
-// }
-
-// export interface pasteObjectActionType {
-//     type: 'PASTE_OBJECT';
-// }
-// export function pasteObject(): pasteObjectActionType {
-//     return {
-//         type: 'PASTE_OBJECT',
-//     };
-// }
-
 export interface strokeResizeActionType {
     type: 'RESIZE_FIGURE_STROKE';
     strokeWidth: number;
@@ -148,35 +121,6 @@ export function strokeResize(strokeWidth: number): strokeResizeActionType {
         strokeWidth,
     };
 }
-
-// export interface changeRectBorderRadiusActionType {
-//     type: 'CHANGE_FIGURE_BORDER_RADIUS';
-//     newRadius: number;
-// }
-// export function changeRectBorderRadius(
-//     newRadius: number
-// ): changeRectBorderRadiusActionType {
-//     return {
-//         type: 'CHANGE_FIGURE_BORDER_RADIUS',
-//         newRadius,
-//     };
-// }
-
-// export interface changeSlideOrderActionType {
-//     type: 'CHANGE_SLIDE_ORDER';
-//     slideId: string;
-//     slideAfterId: string;
-// }
-// export function changeSlideOrder(
-//     slideId: string,
-//     slideAfterId: string
-// ): changeSlideOrderActionType {
-//     return {
-//         type: 'CHANGE_SLIDE_ORDER',
-//         slideId,
-//         slideAfterId,
-//     };
-// }
 
 export interface strokeColorSetActionType {
     type: 'CHANGE_FIGURE_STROKE_COLOR';
@@ -244,19 +188,6 @@ export function toggleUnderlinedText(): toggleUnderlinedTextActionType {
         type: 'TOGGLE_UNDERLINED_TEXT',
     };
 }
-
-// export interface changeTextAlignmentActionType {
-//     type: 'CHANGE_TEXT_ALIGNMENT';
-//     alignment: 'right' | 'center' | 'left';
-// }
-// export function changeTextAlignment(
-//     alignment: 'right' | 'center' | 'left'
-// ): changeTextAlignmentActionType {
-//     return {
-//         type: 'CHANGE_TEXT_ALIGNMENT',
-//         alignment,
-//     };
-// }
 
 export interface changeTextFontFamilyActionType {
     type: 'CHANGE_TEXT_FONT_FAMILY';
@@ -327,15 +258,6 @@ export function moveItem(x: number, y: number): moveItemActionType {
         y,
     };
 }
-
-// export interface decreaseZIndexActionType {
-//     type: 'DECREASE_Z_INDEX';
-// }
-// export function decreaseZIndex(): decreaseZIndexActionType {
-//     return {
-//         type: 'DECREASE_Z_INDEX',
-//     };
-// }
 
 export interface changePresentationNameActionType {
     type: 'CHANGE_PRESENTATION_NAME';
@@ -409,12 +331,3 @@ export function deleteSlideObject(): deleteSlideObjectActionType {
         type: 'DELETE_SLIDE_OBJECT',
     };
 }
-
-// export interface increaseZIndexActionType {
-//     type: 'INCREASE_ZINDEX';
-// }
-// export function increaseZIndex(): increaseZIndexActionType {
-//     return {
-//         type: 'INCREASE_ZINDEX',
-//     };
-// }
