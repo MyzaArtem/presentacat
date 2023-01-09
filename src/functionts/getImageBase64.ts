@@ -26,7 +26,7 @@ export function getBase64(image: ImgObject): Promise<string> {
         let img = new Image(image.width, image.height);
         img.src = image.path;
         img.crossOrigin = 'Anonymous';
-
+        
         img.onload = function () {
             var canvas = document.createElement('canvas'),
                 ctx = canvas.getContext('2d');
